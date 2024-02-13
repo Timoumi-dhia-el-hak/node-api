@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const server = jsonServer.create();
 const userdb = JSON.parse(fs.readFileSync("./users.json", "utf-8"));
-
+const port =process.env.PORT || 5000;
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(jsonServer.defaults());
@@ -81,6 +81,6 @@ server.post("/api/auth/login", (req, res) => {
   res.status(200).json({ access_token });
 });
 
-server.listen(5000, () => {
+server.listen(port, () => {
   console.log("Running fake api json server");
 });
